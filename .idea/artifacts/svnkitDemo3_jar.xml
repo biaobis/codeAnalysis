@@ -1,0 +1,28 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="svnkitDemo3:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/svnkitDemo3_jar</output-path>
+    <root id="archive" name="svnkitDemo3.jar">
+      <element id="module-output" name="svnkitDemo3" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../JDOM/jdom-2.0.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/jna-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/sqljet-1.1.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/svnkit-1.10.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/lz4-java-1.4.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/antlr-runtime-3.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/svnkit-cli-1.10.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/jna-platform-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/sequence-library-1.0.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/svnkit-javahl16-1.10.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/jsch.agentproxy.core-0.0.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/trilead-ssh2-1.0.0-build222.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/jsch.agentproxy.pageant-0.0.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/jsch.agentproxy.sshagent-0.0.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/svnkit-javahl16-1.10.1-javadoc.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/svnkit-javahl16-1.10.1-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/jsch.agentproxy.usocket-nc-0.0.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/jsch.agentproxy.usocket-jna-0.0.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/jsch.agentproxy.connector-factory-0.0.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SVNkit/svnkit-1.10.1/lib/jsch.agentproxy.svnkit-trilead-ssh2-0.0.7.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
