@@ -90,7 +90,7 @@ public class App {
             String jarPath = App.class.getProtectionDomain().getCodeSource()
                     .getLocation().getPath();
             String pathPrefix = jarPath.substring(1,jarPath.lastIndexOf("/"));
-            File file = new File(pathPrefix + "/args.properties");
+            File file = new File(pathPrefix + "/args.ini");
             if(!file.exists()){
                 System.out.println("配置文件不存在，请在jar包同级目录下添加配置文件！");
                 System.exit(1);
@@ -102,8 +102,8 @@ public class App {
         }
 
         String includedDirStr = properties.getProperty("includedDir");
-        String excludedDirStr = properties.getProperty("excludedDir");
-        String includedTypeStr = properties.getProperty("includedType");
+        String excludedDirStr = properties.getProperty( "excludedDir");
+        String includedTypeStr = properties.getProperty( "includedType");
         String excludedTypeStr = properties.getProperty("excludedType");
 
         String[] includedDir = {};
