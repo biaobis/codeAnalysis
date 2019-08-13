@@ -1,3 +1,4 @@
+import javax.activation.MimetypesFileTypeMap;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -5,10 +6,33 @@ import java.io.IOException;
 import java.util.List;
 
 public class LocalFileAnalyzeUtils {
+
+    private MimetypesFileTypeMap mimetypesFileTypeMap;
+
+    public LocalFileAnalyzeUtils() {
+        mimetypesFileTypeMap = new MimetypesFileTypeMap();
+        mimetypesFileTypeMap.addMimeTypes("image png jpg gif jpeg bmp icon");
+        mimetypesFileTypeMap.addMimeTypes("c++ cpp h pro ui" );
+        mimetypesFileTypeMap.addMimeTypes("java java properties js jsx css less html");
+        mimetypesFileTypeMap.addMimeTypes("xml xml");
+        mimetypesFileTypeMap.addMimeTypes("binary exe");
+    }
+
+    /**
+     *  文件类型过滤器
+     */
+    public boolean mimeTypeFilter(String pathName){
+        String contentType = mimetypesFileTypeMap.getContentType(pathName);
+        if(contentType.equals("java") || contentType.equals("c++") || contentType.equals("xml")){
+            return true;
+        }
+        return false;
+    }
+
     /**
      * 获得指定路径下的所有文件
      */
-    public static void getAllFilePath(String src, List<String> resultFilePath){
+    public void getAllFilePath(String src, List<String> resultFilePath){
         File srcFile = new File(src);
         if(!srcFile.exists()){
             System.err.println("该文件路径不存在！");
@@ -29,7 +53,7 @@ public class LocalFileAnalyzeUtils {
     /**
      * 计算单个文件代码行数目、空行数目以及注释数目
      */
-    public static int[] codeLineOfFile(String filePath){
+    public int[] codeLineOfFile(String filePath){
         int[] res = new int[3];
         int codeSum = 0;  //代码行数
         int blankSum = 0; //空行数
@@ -47,7 +71,7 @@ public class LocalFileAnalyzeUtils {
                     commentSum++;
                 }else if(line.trim().startsWith("/*")){  //多行注释和文档注释
                     commentSum++;
-                    while(!line.endsWith("*/")){
+                    while(!line.contains("*/")){
                         line = br.readLine();
                         commentSum++;
                     }
