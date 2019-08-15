@@ -8,10 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="18ac0474-30ab-4ee2-9d75-e05eaf72d084" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/svnkitDemo3_jar/svnkitDemo3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/svnkitDemo3_jar/svnkitDemo3.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/svnkitDemo3/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/svnkitDemo3/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/svnkitDemo3/LocalFileAnalyzeUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/svnkitDemo3/LocalFileAnalyzeUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LocalFileAnalyzeUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LocalFileAnalyzeUtils.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -26,7 +22,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="-1990">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -37,12 +33,19 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/LocalFileAnalyzeUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="37" column="44" lean-forward="true" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
+            <state relative-caret-position="323">
+              <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ChangedPathDetails.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-165" />
           </provider>
         </entry>
       </file>
@@ -87,8 +90,8 @@
         <option value="$PROJECT_DIR$/out/artifacts/svnkitDemo3_jar/args.ini" />
         <option value="$PROJECT_DIR$/out/artifacts/svnkitDemo3_jar/使用文档.md" />
         <option value="$PROJECT_DIR$/src/App.java" />
-        <option value="$PROJECT_DIR$/src/LocalFileAnalyzeUtils.java" />
         <option value="$PROJECT_DIR$/out/artifacts/svnkitDemo3_jar/settings.ini" />
+        <option value="$PROJECT_DIR$/src/LocalFileAnalyzeUtils.java" />
       </list>
     </option>
   </component>
@@ -103,6 +106,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -137,8 +142,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -183,6 +186,9 @@
       <workItem from="1565320593682" duration="2564000" />
       <workItem from="1565609759038" duration="2551000" />
       <workItem from="1565657805534" duration="13703000" />
+      <workItem from="1565697668688" duration="804000" />
+      <workItem from="1565744195633" duration="1198000" />
+      <workItem from="1565848245608" duration="4809000" />
     </task>
     <task id="LOCAL-00001" summary="将properties文件改成了ini文件">
       <created>1565579382594</created>
@@ -191,16 +197,24 @@
       <option name="project" value="LOCAL" />
       <updated>1565579382594</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="修改了注释统计代码的一个逻辑错误，修改了参数输入方式。">
+      <created>1565697851616</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1565697851616</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24019000" />
+    <option name="totallyTimeSpent" value="30830000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1444563" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14658849" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -236,7 +250,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="将properties文件改成了ini文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="将properties文件改成了ini文件" />
+    <MESSAGE value="修改了注释统计代码的一个逻辑错误，修改了参数输入方式。" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了注释统计代码的一个逻辑错误，修改了参数输入方式。" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/DirAndPostfixFilterUtils.java">
@@ -250,9 +265,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChangedPathDetails.java">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/out/artifacts/svnkitDemo3_jar/args.properties" />
     <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
@@ -269,13 +281,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LogDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="59" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -303,19 +308,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/LogDetails.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="59" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="-1990">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChangedPathDetails.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-165" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/LocalFileAnalyzeUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="44" lean-forward="true" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
+        <state relative-caret-position="323">
+          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

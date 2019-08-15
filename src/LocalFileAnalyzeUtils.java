@@ -1,32 +1,26 @@
-import javax.activation.MimetypesFileTypeMap;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class LocalFileAnalyzeUtils {
-
-    private MimetypesFileTypeMap mimetypesFileTypeMap;
-
-    public LocalFileAnalyzeUtils() {
-        mimetypesFileTypeMap = new MimetypesFileTypeMap();
-        mimetypesFileTypeMap.addMimeTypes("image png jpg gif jpeg bmp icon");
-        mimetypesFileTypeMap.addMimeTypes("c++ cpp h pro ui" );
-        mimetypesFileTypeMap.addMimeTypes("java java properties js jsx css less html");
-        mimetypesFileTypeMap.addMimeTypes("xml xml");
-        mimetypesFileTypeMap.addMimeTypes("binary exe");
-    }
 
     /**
      *  文件类型过滤器
      */
     public boolean mimeTypeFilter(String pathName){
-        String contentType = mimetypesFileTypeMap.getContentType(pathName);
-        if(contentType.equals("java") || contentType.equals("c++") || contentType.equals("xml")){
-            return true;
-        }
-        return false;
+        int idx = pathName.lastIndexOf(".");
+        String postfix  = idx > -1 ? pathName.substring(idx + 1).trim().toUpperCase() : "";  //取得后缀
+
+        String[] binaryTypes = { "EXE", "CLASS", "DOC", "BIN", "OBJ", "COM", "PNG", "JPG", "GIF", "JPEG", "BMP", "ICON"};
+        String[] srcTypes = {"JAVA", "PROPERTIES", "JS", "JSX", "CSS", "LESS", "HTML", "HTM"
+                , "CPP", "H", "HPP", "HXX", "PRO", "UI", "XML", "CC", "CXX", "C", "C++"};
+        List<String> binaryTypeList = Arrays.asList(binaryTypes);
+        List<String> srcTypeList = Arrays.asList(srcTypes);
+
+        return srcTypeList.contains(postfix);
     }
 
     /**
