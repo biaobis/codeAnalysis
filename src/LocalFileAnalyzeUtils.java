@@ -16,7 +16,7 @@ public class LocalFileAnalyzeUtils {
 
         String[] binaryTypes = { "EXE", "CLASS", "DOC", "BIN", "OBJ", "COM", "PNG", "JPG", "GIF", "JPEG", "BMP", "ICON"};
         String[] srcTypes = {"JAVA", "PROPERTIES", "JS", "JSX", "CSS", "LESS", "HTML", "HTM"
-                , "CPP", "H", "HPP", "HXX", "PRO", "UI", "XML", "CC", "CXX", "C", "C++"};
+                , "CPP", "H", "HPP", "HXX", "PRO", "UI", "XML", "CC", "CXX", "C", "C++", "PY"};
         List<String> binaryTypeList = Arrays.asList(binaryTypes);
         List<String> srcTypeList = Arrays.asList(srcTypes);
 

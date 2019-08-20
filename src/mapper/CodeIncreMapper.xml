@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="model">
+    <!-- resultType要明确写类的全限定名 -->
+    <insert id="add" parameterType="model.CodeIncre" >
+        insert into codeincre (author, addLines, delLines) values (#{author}, #{addLines}, #{delLines})
+    </insert>
+
+    <select id="authorExist" parameterType="java.lang.String" resultType="int">
+        select count(*) from codeincre where author = #{author}
+    </select>
+
+    <update id="update" parameterType="model.CodeIncre">
+        update codeincre set addLines = (addLines + #{addLines}), delLines = (delLines + #{delLines}) where author = #{author}
+    </update>
+
+    <delete id="clear" >
+        delete from codeincre;
+    </delete>
+</mapper>

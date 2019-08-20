@@ -1,6 +1,13 @@
+import model.CodeIncre;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -57,6 +64,49 @@ public class App {
     }
 
     /**
+     * 将查询到的svn中的代码行信息存入数据库
+     */
+    private void saveResultToDB(){
+        SVNKitUtil svnKitUtil = new SVNKitUtil(svnurl, userName, password);
+        List<LogDetails> logDetailsList = svnKitUtil.getLogDetails(startDate, endDate, includedDir, excludedDir
+                , includedType, excludedType);
+
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = null;
+        try {
+            inputStream = Resources.getResourceAsStream(resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        //运行前先清空数据库记录
+        sqlSession.delete("clear");
+
+        for(LogDetails logDetails : logDetailsList){
+            CodeIncre codeIncre = new CodeIncre();
+            codeIncre.setAuthor(logDetails.getAuthor());
+            int addLines = 0;
+            int delLines = 0;
+            for(ChangedPathDetails changedPathDetails : logDetails.getChangedFileInfoList()){
+                addLines += changedPathDetails.getAddLines();
+                delLines += changedPathDetails.getDelLines();
+            }
+            codeIncre.setAddLines(addLines);
+            codeIncre.setDelLines(delLines);
+            int authorExist = sqlSession.selectOne("authorExist", logDetails.getAuthor());
+            if(authorExist == 0)
+                sqlSession.insert("add", codeIncre);
+            else
+                sqlSession.update("update", codeIncre);
+        }
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    /**
      * 统计列表中的所有文件代码行总和
      */
     private int[] codeLineSum(){
@@ -81,6 +131,7 @@ public class App {
     }
 
     public static void main(String[] args){
+
 
         Properties properties = new Properties();
         try {
@@ -145,6 +196,7 @@ public class App {
                     , includedDir, excludedDir, includedType, excludedType);
 
             app.saveResultToSavePath(resultSavePath + "\\logDetails.xml");
+            app.saveResultToDB();
             System.out.println("查询结束！");
 
         }else if(argLen == 0){
