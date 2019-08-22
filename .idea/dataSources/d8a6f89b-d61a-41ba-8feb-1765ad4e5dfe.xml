@@ -1116,28 +1116,52 @@
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
     <table id="280" parent="6" name="codeincre"/>
-    <column id="281" parent="280" name="author">
+    <table id="281" parent="6" name="logdetails"/>
+    <column id="282" parent="280" name="author">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="282" parent="280" name="addLines">
+    <column id="283" parent="280" name="addLines">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="280" name="delLines">
+    <column id="284" parent="280" name="delLines">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="284" parent="280" name="PRIMARY">
+    <key id="285" parent="280" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>author</ColNames>
       <Primary>1</Primary>
     </key>
+    <column id="286" parent="281" name="revision">
+      <Position>1</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="287" parent="281" name="author">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="288" parent="281" name="logDate">
+      <Position>3</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="289" parent="281" name="changedPathDetailsList">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
   </database-model>
 </dataSource>

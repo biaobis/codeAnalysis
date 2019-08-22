@@ -1,3 +1,4 @@
+import com.alibaba.fastjson.JSON;
 import org.tmatesoft.svn.core.*;
 import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
 import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
@@ -11,9 +12,6 @@ import org.tmatesoft.svn.core.wc.SVNRevision;
 import org.tmatesoft.svn.core.wc.SVNWCUtil;
 
 import java.io.ByteArrayOutputStream;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -188,12 +186,6 @@ public class SVNKitUtil {
                 String msg = svnLogEntry.getMessage();  //log备注信息
 
                 Date logDate = svnLogEntry.getDate();   //log日期
-                //利用java8中的线程安全日期类来格式化log日期
-                Instant instant = logDate.toInstant();
-                ZoneId zoneId = ZoneId.systemDefault();
-                LocalDateTime logDateTime = LocalDateTime.ofInstant(instant,zoneId); //Date转LocalDateTime
-                DateUtilsJava8 dateUtilsJava8 = new DateUtilsJava8("yyyy-MM-dd  HH:mm:ss");
-                String logDateTimeStr = dateUtilsJava8.format(logDateTime);  //也可以直接toString()
 
                 List<ChangedPathDetails> changedPathDetailsList = null;
                 if(svnLogEntry.getChangedPaths().size() > 0){
@@ -244,7 +236,8 @@ public class SVNKitUtil {
                 }
 
                 if(changedPathDetailsList != null && changedPathDetailsList.size() > 0){
-                    logDetailsList.add(new LogDetails(revision, author, logDateTimeStr, msg, changedPathDetailsList));
+                    String changedPathDetailsListJSON = JSON.toJSONString(changedPathDetailsList);
+                    logDetailsList.add(new LogDetails(revision, author, logDate, changedPathDetailsListJSON));
                 }
 
             }

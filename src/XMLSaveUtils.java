@@ -1,3 +1,4 @@
+import com.alibaba.fastjson.JSONArray;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
@@ -5,6 +6,11 @@ import org.jdom2.output.XMLOutputter;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class XMLSaveUtils {
@@ -27,10 +33,19 @@ public class XMLSaveUtils {
 
             logDetailsEle.setAttribute("revision", String.valueOf(logDetails.getRevision())); //增加属性
             logDetailsEle.setAttribute("author", logDetails.getAuthor());
-            logDetailsEle.setAttribute("date", logDetails.getDate());
+            Date logDate = logDetails.getDate();
+            //使用java8中的线程安全日期类来格式化log日期
+            Instant instant = logDate.toInstant();
+            ZoneId zoneId = ZoneId.systemDefault();
+            LocalDateTime logDateTime = LocalDateTime.ofInstant(instant, zoneId);
+            DateUtilsJava8 dateUtilsJava8 = new DateUtilsJava8("yyyy-MM-dd  HH:mm:ss");
+            String logDateTimeStr = dateUtilsJava8.format(logDateTime);
+            logDetailsEle.setAttribute("date", logDateTimeStr);
 
 
-            List<ChangedPathDetails> changedPathDetailsList = logDetails.getChangedFileInfoList();
+            String changedPathDetailsListJSON  = logDetails.getChangedPathDetailsListJSON();
+            List<ChangedPathDetails> changedPathDetailsList = JSONArray.parseArray(changedPathDetailsListJSON, ChangedPathDetails.class);
+
             int sumOfAddLines = 0;
 
             for(ChangedPathDetails changedPathDetails : changedPathDetailsList){

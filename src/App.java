@@ -1,4 +1,3 @@
-import model.CodeIncre;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -81,25 +80,10 @@ public class App {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
-        //运行前先清空数据库记录
-        sqlSession.delete("clear");
-
+        // TODO: 2019/8/22 正式发布将此行删掉
+        sqlSession.delete("clearTable");
         for(LogDetails logDetails : logDetailsList){
-            CodeIncre codeIncre = new CodeIncre();
-            codeIncre.setAuthor(logDetails.getAuthor());
-            int addLines = 0;
-            int delLines = 0;
-            for(ChangedPathDetails changedPathDetails : logDetails.getChangedFileInfoList()){
-                addLines += changedPathDetails.getAddLines();
-                delLines += changedPathDetails.getDelLines();
-            }
-            codeIncre.setAddLines(addLines);
-            codeIncre.setDelLines(delLines);
-            int authorExist = sqlSession.selectOne("authorExist", logDetails.getAuthor());
-            if(authorExist == 0)
-                sqlSession.insert("add", codeIncre);
-            else
-                sqlSession.update("update", codeIncre);
+            sqlSession.insert("logDetailsMapper.add", logDetails);
         }
 
         sqlSession.commit();
@@ -173,7 +157,7 @@ public class App {
         int argLen = args.length;
 
         if(argLen == 3){
-            System.out.println("==查询svn版本库中的文件改动信息==");
+            System.out.println("正在查询svn版本库中的文件改动信息...");
             String userName = args[0];
             String password = args[1];
             String resultSavePath = args[2];
@@ -196,18 +180,41 @@ public class App {
                     , includedDir, excludedDir, includedType, excludedType);
 
             app.saveResultToSavePath(resultSavePath + "\\logDetails.xml");
-            app.saveResultToDB();
             System.out.println("查询结束！");
 
         }else if(argLen == 0){
-            System.out.println("==查询本地代码行数==");
+            System.out.println("正在查询本地代码行数...");
             String srcPath = properties.getProperty("localurl");
             App app = new App(includedDir, excludedDir, includedType, excludedType, srcPath);
 
             int[] codeLineSum = app.codeLineSum();
             System.out.println("路径 " + srcPath + " 下,代码行数为：" + codeLineSum[0] + " 行； 空行数为："
                     + codeLineSum[1] + " 行；注释数为：" + codeLineSum[2] + "行。");
-        }else {
+        }else if(argLen == 2){
+            System.out.println("正在将查询结果存入数据库...");
+            String userName = args[0];
+            String password = args[1];
+
+            String svnURL = properties.getProperty("svnurl").trim();
+            String startDateStr = properties.getProperty("startDate").trim();
+            String endDateStr = properties.getProperty("endDate").trim();
+
+            SimpleDateFormat formator = new SimpleDateFormat("yyyy-MM-dd");
+            Date startDate = null;
+            Date endDate = null;
+            try {
+                startDate = formator.parse(startDateStr);
+                endDate = formator.parse(endDateStr);
+            } catch (ParseException e) {
+                System.err.println("输入日期格式错误！");
+            }
+
+            App app = new App(svnURL, userName, password, startDate, endDate
+                    , includedDir, excludedDir, includedType, excludedType);
+
+            app.saveResultToDB();
+            System.out.println("存储完毕！");
+        } else{
             System.out.println("请正确输入参数！");
         }
 
