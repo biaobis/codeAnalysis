@@ -80,14 +80,16 @@ public class App {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
-        // TODO: 2019/8/22 正式发布将此行删掉
-        sqlSession.delete("clearTable");
-        for(LogDetails logDetails : logDetailsList){
-            sqlSession.insert("logDetailsMapper.add", logDetails);
+        try{
+            for(LogDetails logDetails : logDetailsList){
+                sqlSession.insert("logDetailsMapper.add", logDetails);
+            }
+            sqlSession.commit();
+        }catch (Exception e){
+            sqlSession.rollback();
+        }finally {
+            sqlSession.close();
         }
-
-        sqlSession.commit();
-        sqlSession.close();
     }
 
     /**

@@ -10,6 +10,14 @@
         (#{revision}, #{author}, #{logDate}, #{changedPathDetailsListJSON})
     </insert>
 
+    <sql id="begin">
+        begin
+    </sql>
+
+    <sql id="commit">
+        commit
+    </sql>
+
     <delete id="clearTable">
         delete from logdetails;
     </delete>
